@@ -8,30 +8,57 @@ import TodoList from "./Components/TodoList";
 // showing vs-code github setup
 export default class App extends Component {
   state = {
-    items: [
-      { id: 1, title: "wake up" },
-      { id: 2, title: "brush" },
-    ],
+    items: [],
     id: uuid(),
     item: "",
     editItem: false,
   };
   handleChange = (e) => {
-    console.log("handle change");
+    this.setState({
+      item: e.target.value,
+    });
   };
   handleSubmit = (e) => {
-    console.log("handle Submit");
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item,
+    };
+    const updatedItems = [...this.state.items, newItem];
+
+    this.setState(
+      {
+        items: updatedItems,
+        item: "",
+        id: uuid(),
+        editItem: false,
+      },
+      console.log(this.state)
+    );
   };
   clearList = () => {
-    console.log("clear list");
+    this.setState({
+      items: [],
+    });
   };
   handleDelete = (id) => {
-    console.log(`handle delete ${id}`);
+    const filtereditems = this.state.items.filter((item) => item.id !== id);
+    this.setState({
+      items: filtereditems,
+    });
   };
   handleEdit = (id) => {
-    console.log(`handle edit ${id}`);
+    const filtereditems = this.state.items.filter((item) => item.id !== id);
+    const selecteditem = this.state.items.find((item) => item.id === id);
+    this.setState({
+      items: filtereditems,
+      item: selecteditem.title,
+      id: id, 
+      editItem: true,
+    });
   };
   render() {
+    console.log(this.state);
     return (
       <>
         <div>
