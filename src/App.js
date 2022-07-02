@@ -4,12 +4,8 @@ import uuid from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoInput from "./Components/TodoInput";
 import TodoList from "./Components/TodoList";
-// controlled uncontrolled inputs
-// JS
-// const input = document.getElementById('myText');
-// const inputValue = input.value;
-// React
-// value, onChange
+
+// showing vs-code github setup
 export default class App extends Component {
   render() {
     return (
